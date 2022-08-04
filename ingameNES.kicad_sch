@@ -6,8 +6,8 @@
 
   (title_block
     (title "InGame-NES MMC3")
-    (date "2022-06-03")
-    (rev "1")
+    (date "2022-08-02")
+    (rev "2")
     (company "Late to the Game")
   )
 
@@ -901,9 +901,14 @@
   )
 
   (text "mapper 42 SIGNALS + VCC + GND\n\nM2\nROMSEL\nIRQ\n\nPRG-ROM-A[13..18]\nPRG-CE\nPRG-OE\nPRG-RAM-CE\nPRG-RAM-CEn\nPRG-RAM-WE\nCPU-D[0..7]\nCPU-A0,A13,A14\nCPU-RW\n\nPPU-A[10..12]\nPPU-!A13\nPPU-WR\nPPU-RD\nCIRAM-A10\nCHR-A[10..17]\n\nEXP AUDIO\n\nPCIE Express Mini 52 pins\n2041119-1\nheight 4.0mm"
-    (at 293.37 157.48 0)
+    (at 328.93 162.56 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 79451892-db6b-4999-916d-6392174ee493)
+  )
+  (text "CTIA standard 3RCA\nTip Left Audio\nRing 1 Right Audio\nRing 2 Ground\nSleeve Video"
+    (at 285.75 127 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 7f1fdb08-9a59-4f14-877b-1b2a4318560d)
   )
   (text "CIRAM:  This is the internal 2K of video RAM located at 0000-1FFF in the\n        PPU's address space.  It stands for 'Character Internal RAM'\n\nP-ROM:  Same as PRG ROM, or VROM.\n\nC-ROM:  Same as CHR ROM.\n\nC-RAM:  Same as CHR RAM.\n\n\n\nPPU access:  You have A0-A13, /A13, D0-D7, /WR and /RD.  A13 is usually\nconnected to /CE of the CIRAM to enable it for addresses 0000-1FFF.  \nLikewise, /A13 is usually used to enable the C-ROM or C-RAM on the cart\n(which is then mapped into 2000-3FFF).  \n\nRelated to the PPU is the CIRAM.  You have two lines of it to use as you\nsee fit.  There are many ways they can be put to use...\n\n1) You can disable the CIRAM all together by pulling pin 57 high.  You can\nthen place  4K of RAM onto the bus with it's /CE tied to pin 58.  This\nwill place that 4K of RAM at 0000-1FFF.  Gauntlet is an example of a cart\nthat does this.  (The carts I've seen use a 6264 8K RAM with A12 tied\nlow so it's effectively 4K).\n\n2) Horizontal / Vertical mirroring.  A10 of the CIRAM was brought out to\nthe cart edge for just this reason.  If you tie it to A10, you'll get\nvertical mirroring; since the first two banks will be in sequence.\nHowever, if you tie it to A11, you'll get horizontal mirroring; adjacent\ntwin banks will be the same.\n\n3) The MMCs can control the A10 line of the CIRAM to change either the\nscreen or mirroring type on the fly.  \n\n4) The LS161 mappers can change the state of the A10 line; however why\nthis would be desireable is anyone's guess. :-)"
     (at 284.48 81.28 0)
@@ -956,7 +961,7 @@
   )
 
   (symbol (lib_id "Graphic:Logo_Open_Hardware_Small") (at 231.14 162.56 0) (unit 1)
-    (in_bom no) (on_board yes)
+    (in_bom no) (on_board no)
     (uuid 00000000-0000-0000-0000-0000618c0e8a)
     (property "Reference" "#LOGO1" (id 0) (at 231.14 155.575 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -1153,7 +1158,7 @@
   )
 
   (symbol (lib_id "Graphic:SYM_Radio_Waves_Small") (at 248.92 162.56 0) (unit 1)
-    (in_bom yes) (on_board yes) (fields_autoplaced)
+    (in_bom no) (on_board yes) (fields_autoplaced)
     (uuid 41c29b3a-bde5-4cc4-a7b9-bcf194e95a03)
     (property "Reference" "SYM1" (id 0) (at 248.92 159.004 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -1510,9 +1515,6 @@
     (path "/00000000-0000-0000-0000-00006076ea7e/5cc0b82e-3437-4c39-a57d-8747e62624c5"
       (reference "#C2") (unit 1) (value "330p") (footprint "Capacitor_SMD:C_0402_1005Metric")
     )
-    (path "/00000000-0000-0000-0000-0000602e4b45/fdb89b58-2166-4574-89a2-dad8c17edf7a"
-      (reference "#C3") (unit 1) (value "100n") (footprint "Capacitor_SMD:C_0402_1005Metric")
-    )
     (path "/00000000-0000-0000-0000-00006076ea7e/9b75adf3-d9a1-4436-9b23-0c65f231ab46"
       (reference "#C4") (unit 1) (value "330p") (footprint "Capacitor_SMD:C_0402_1005Metric")
     )
@@ -1575,9 +1577,6 @@
     )
     (path "/00000000-0000-0000-0000-000060a9ace1/00000000-0000-0000-0000-000060acebed"
       (reference "#C36") (unit 1) (value "51p") (footprint "Capacitor_SMD:C_0402_1005Metric")
-    )
-    (path "/00000000-0000-0000-0000-0000602e4b45/00000000-0000-0000-0000-0000619c71c8"
-      (reference "#C48") (unit 1) (value "100n") (footprint "Capacitor_SMD:C_0402_1005Metric")
     )
     (path "/00000000-0000-0000-0000-000061acc981"
       (reference "#H1") (unit 1) (value "MountingHole_M3") (footprint "MountingHole:MountingHole_3mm")
@@ -1699,9 +1698,6 @@
     (path "/00000000-0000-0000-0000-0000602e4b45/00000000-0000-0000-0000-0000615936b4"
       (reference "#PWR075") (unit 1) (value "GND") (footprint "")
     )
-    (path "/00000000-0000-0000-0000-0000602e4b45/00000000-0000-0000-0000-0000619c71bd"
-      (reference "#PWR080") (unit 1) (value "GND") (footprint "")
-    )
     (path "/00000000-0000-0000-0000-0000602e5cdc/00000000-0000-0000-0000-000061b0251b"
       (reference "#PWR0101") (unit 1) (value "GND") (footprint "")
     )
@@ -1761,9 +1757,6 @@
     )
     (path "/00000000-0000-0000-0000-000060a9ace1/00000000-0000-0000-0000-000061e25628"
       (reference "#PWR0121") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/00000000-0000-0000-0000-0000602e4b45/04df1c58-4b47-4352-b8a5-046f653b60a7"
-      (reference "#PWR0122") (unit 1) (value "GND") (footprint "")
     )
     (path "/00000000-0000-0000-0000-00006076ea7e/d3f06d28-d53d-4513-961b-af050f9d6bff"
       (reference "#PWR0123") (unit 1) (value "+5V") (footprint "")
@@ -1831,9 +1824,6 @@
     (path "/00000000-0000-0000-0000-00006076ea7e/00000000-0000-0000-0000-000061931191"
       (reference "#PWR0148") (unit 1) (value "+5V") (footprint "")
     )
-    (path "/00000000-0000-0000-0000-0000602e4b45/00000000-0000-0000-0000-000061bf163c"
-      (reference "#PWR0149") (unit 1) (value "GND") (footprint "")
-    )
     (path "/00000000-0000-0000-0000-00006076ea7e/a920b7a1-5ff3-44a6-914e-17b5626e0d18"
       (reference "#PWR0150") (unit 1) (value "GND") (footprint "")
     )
@@ -1890,9 +1880,6 @@
     )
     (path "/00000000-0000-0000-0000-0000602e4b45/b9e8f953-efad-44c3-88ab-1f11e81c79eb"
       (reference "#PWR0168") (unit 1) (value "+5V") (footprint "")
-    )
-    (path "/00000000-0000-0000-0000-0000602e4b45/00000000-0000-0000-0000-000061c01c59"
-      (reference "#PWR0169") (unit 1) (value "GND") (footprint "")
     )
     (path "/00000000-0000-0000-0000-0000618b7f4d/8da195f3-d79c-49d5-b26b-8654efa09b3f"
       (reference "#PWR0170") (unit 1) (value "GND") (footprint "")
@@ -1951,9 +1938,6 @@
     (path "/00000000-0000-0000-0000-000061b7ae74/00000000-0000-0000-0000-000061b85cad"
       (reference "#PWR0190") (unit 1) (value "GND") (footprint "")
     )
-    (path "/00000000-0000-0000-0000-0000602e4b45/00000000-0000-0000-0000-000061b8b01a"
-      (reference "#PWR0191") (unit 1) (value "+5V") (footprint "")
-    )
     (path "/00000000-0000-0000-0000-0000618b7f4d/4011b300-ebeb-4301-a683-5c483a23fcbe"
       (reference "#PWR0192") (unit 1) (value "+5V") (footprint "")
     )
@@ -2008,9 +1992,6 @@
     (path "/00000000-0000-0000-0000-0000618b7f4d/7c766c11-af8a-445e-bb0d-993aa1d89912"
       (reference "#PWR0210") (unit 1) (value "GND") (footprint "")
     )
-    (path "/00000000-0000-0000-0000-0000602e4b45/12a8cd01-51f5-447c-8a4d-e5db488f215a"
-      (reference "#PWR0211") (unit 1) (value "+5V") (footprint "")
-    )
     (path "/00000000-0000-0000-0000-0000618b7f4d/4c503fea-1ffb-4af3-8c31-0ff1f99104b0"
       (reference "#PWR0212") (unit 1) (value "GND") (footprint "")
     )
@@ -2061,18 +2042,6 @@
     )
     (path "/00000000-0000-0000-0000-000061b7ae74/00000000-0000-0000-0000-000061b85c44"
       (reference "#PWR0228") (unit 1) (value "+5V") (footprint "")
-    )
-    (path "/00000000-0000-0000-0000-0000602e4b45/0f872c40-ef1a-4280-a19e-659457432ed4"
-      (reference "#PWR0230") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/00000000-0000-0000-0000-0000602e4b45/aae131c8-82ae-414a-b3b8-c7621145f108"
-      (reference "#PWR0231") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/00000000-0000-0000-0000-0000602e4b45/7c100d13-66cb-46b2-beab-f9e35dc66013"
-      (reference "#PWR0232") (unit 1) (value "+5V") (footprint "")
-    )
-    (path "/00000000-0000-0000-0000-0000602e4b45/11acf68e-b267-4635-86b8-6f03c2c91aff"
-      (reference "#PWR0233") (unit 1) (value "GND") (footprint "")
     )
     (path "/00000000-0000-0000-0000-00006076ea7e/6dba6c38-c4be-4c12-95a0-1407d4b23787"
       (reference "#PWR0234") (unit 1) (value "+5V") (footprint "")
@@ -2164,9 +2133,6 @@
     (path "/00000000-0000-0000-0000-000060a9ace1/00000000-0000-0000-0000-000061e25633"
       (reference "#R8") (unit 1) (value "150K") (footprint "Resistor_SMD:R_0402_1005Metric")
     )
-    (path "/00000000-0000-0000-0000-0000602e4b45/e4f08b08-160d-4154-95b4-5ba892f1bed9"
-      (reference "#R9") (unit 1) (value "10K") (footprint "Resistor_SMD:R_0402_1005Metric")
-    )
     (path "/00000000-0000-0000-0000-000061b7ae74/00000000-0000-0000-0000-000061b85c85"
       (reference "#R10") (unit 1) (value "75R") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
     )
@@ -2194,18 +2160,6 @@
     (path "/00000000-0000-0000-0000-0000618b7f4d/00000000-0000-0000-0000-00006198b490"
       (reference "#U1") (unit 1) (value "NES-MMC3-DIP") (footprint "Package_DIP:DIP-40_W15.24mm_Socket")
     )
-    (path "/00000000-0000-0000-0000-0000602e4b45/e5d6cd7a-eb15-4eb2-bce9-5b40cdf4a5d0"
-      (reference "#U2") (unit 1) (value "FM18W08-SG") (footprint "footprints:SOIC-28W_7.5_8.7mm")
-    )
-    (path "/00000000-0000-0000-0000-0000602e4b45/2d2d419a-28fd-46e1-9440-bbc68dd5d7bf"
-      (reference "#U3") (unit 1) (value "74HC04") (footprint "")
-    )
-    (path "/00000000-0000-0000-0000-0000602e4b45/ed888618-45a8-44bd-9891-4453dbc5a503"
-      (reference "#U3") (unit 2) (value "74HC04") (footprint "")
-    )
-    (path "/00000000-0000-0000-0000-0000602e4b45/b29f0a07-701e-4dcd-b99e-83ab670ca5a4"
-      (reference "#U4") (unit 1) (value "74HC00") (footprint "")
-    )
     (path "/00000000-0000-0000-0000-0000618b7f4d/00000000-0000-0000-0000-000061d4dded"
       (reference "#U5") (unit 1) (value "74LS377") (footprint "")
     )
@@ -2230,17 +2184,8 @@
     (path "/00000000-0000-0000-0000-0000618b7f4d/b0eb6837-5b2e-457e-9ff4-786535b9daae"
       (reference "#U7") (unit 3) (value "SN74HC32N") (footprint "Package_DIP:DIP-14_W7.62mm")
     )
-    (path "/00000000-0000-0000-0000-0000602e4b45/2d6d77e4-e3f4-40df-a31e-423cbf7449fa"
-      (reference "#U8") (unit 3) (value "74AHC04") (footprint "")
-    )
     (path "/00000000-0000-0000-0000-000060a9ace1/00000000-0000-0000-0000-000061f685f5"
       (reference "#U9") (unit 1) (value "SN74LVC1404DCT") (footprint "Package_SO:SSOP-8_2.95x2.8mm_P0.65mm")
-    )
-    (path "/00000000-0000-0000-0000-0000602e4b45/00000000-0000-0000-0000-000061c366a7"
-      (reference "#U10") (unit 1) (value "IS62C256AL-45TLI") (footprint "footprints:TSOP-I-28_11.8x8mm_P0.55mm_ISSI")
-    )
-    (path "/00000000-0000-0000-0000-0000602e4b45/78bd3887-fdc4-4e9a-acd1-e467b76bd693"
-      (reference "#U11") (unit 2) (value "74HC00") (footprint "")
     )
     (path "/00000000-0000-0000-0000-0000618b7f4d/00000000-0000-0000-0000-000061b1a2ff"
       (reference "#U12") (unit 1) (value "74HC161") (footprint "Package_SO:TSSOP-16_4.4x5mm_P0.65mm")
